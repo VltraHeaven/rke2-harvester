@@ -64,4 +64,5 @@ resource "harvester_virtualmachine" "vm" {
     echo "Timed out waiting for IP"
     exit 1
   EOT
+  }
 }
