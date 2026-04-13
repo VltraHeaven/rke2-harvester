@@ -14,8 +14,12 @@ harvester_net           = ""
 harvester_net_namespace = ""
 vm_prefix               = ""
 vm_count                = 1
+vm_cpu                  = 4
+vm_memory               = "4Gi"
+vm_disksize             = "20Gi"
 vm_description          = ""
 ssh_user                = ""
+cloud_config_network_data = ""
 cloud_config_user_data  = <<-EOF
     #cloud-config
     package_update: true
@@ -29,14 +33,6 @@ cloud_config_user_data  = <<-EOF
     - name: root
       ssh_pwauth: True
       chpasswd: { expire: False }
-      ssh_authorized_keys:
-        - 
-      lock_passwd: false
-      shell: /bin/bash
-    - name: audissm
-      ssh_pwauth: True
-      chpasswd: { expire: False }
-      sudo: ALL=(ALL) NOPASSWD:ALL
       ssh_authorized_keys:
         - 
       lock_passwd: false

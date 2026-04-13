@@ -2,7 +2,7 @@ resource "harvester_cloudinit_secret" "cloud-config" {
   name         = "cloud-config-${var.vm_prefix}"
   namespace    = var.namespace
   user_data    = var.cloud_config_user_data
-  network_data = ""
+  network_data = var.cloud_config_network_data
 }
 
 resource "harvester_virtualmachine" "vm" {
@@ -20,8 +20,8 @@ resource "harvester_virtualmachine" "vm" {
     network_data_secret_name = harvester_cloudinit_secret.cloud-config.name
   }
 
-  cpu         = 4
-  memory      = "4Gi"
+  cpu         = var.vm_cpu
+  memory      = var.vm_memory
   efi         = true
   secure_boot = false
 
@@ -34,11 +34,11 @@ resource "harvester_virtualmachine" "vm" {
   disk {
     name        = "rootdisk"
     type        = "disk"
-    size        = "40Gi"
+    size        = var.vm_disksize
     bus         = "virtio"
     boot_order  = 1
     image       = data.harvester_image.image.id
-    auto_delete = true
+    auto_delete = var.vm_disk_auto_delete
   }
 
   input {
@@ -46,5 +46,5 @@ resource "harvester_virtualmachine" "vm" {
     type = "tablet"
     bus  = "usb"
   }
-  depends_on = [ data.harvester_image.image ]
+  depends_on = [data.harvester_image.image]
 }

@@ -1,5 +1,5 @@
 data "harvester_image" "image" {
-  display_name = var.download_image ? resource.harvester_image.new_image[0].display_name : var.image_name 
+  display_name = var.download_image ? resource.harvester_image.new_image[0].display_name : var.image_name
   namespace    = var.image_namespace
 }
 

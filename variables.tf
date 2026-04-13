@@ -19,19 +19,19 @@ variable "download_image" {
 variable "image_name" {
   type        = string
   description = "Name of existing vm image"
-  default = ""
+  default     = ""
 }
 
 variable "image_namespace" {
   type        = string
   description = "Namespace containing existing vm image"
-  default = ""
+  default     = ""
 }
 
 variable "image_storageclass" {
   type        = string
   description = "StorageClass of existing vm image"
-  default = ""
+  default     = ""
 }
 
 variable "new_image" {
@@ -68,9 +68,32 @@ variable "vm_prefix" {
 variable "vm_description" {
   type        = string
   description = "Description for provisioned VMs"
-  default = ""
+  default     = ""
 }
 
+variable "vm_cpu" {
+  type        = string
+  description = "VM CPU core count"
+  default     = 4
+}
+
+variable "vm_memory" {
+  type        = string
+  description = "VM memory amount"
+  default     = "4Gi"
+}
+
+variable "vm_disksize" {
+  type        = string
+  description = "VM rootdisk size"
+  default     = "40Gi"
+}
+
+variable "vm_disk_auto_delete" {
+  type        = bool
+  description = "Set to false to retain VM disks after VM deletion"
+  default     = true
+}
 
 variable "harvester_net" {
   type        = string
@@ -85,11 +108,11 @@ variable "harvester_net_namespace" {
 variable "ssh_user" {
   type        = string
   description = "Account used to connect to vms"
-  default = ""
+  default     = ""
 }
 
 variable "cloud_config_user_data" {
   type        = string
   description = "cloud-init user-data"
-  default = ""
+  default     = ""
 }
