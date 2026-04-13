@@ -55,7 +55,12 @@ variable "namespace" {
   description = "Harvester resource namespace"
 }
 
-variable "machine_name_prefix" {
+variable "vm_count" {
+  type        = number
+  description = "Count of identical VMs to provision"
+}
+
+variable "vm_prefix" {
   type        = string
   description = "VM name prefix"
 }

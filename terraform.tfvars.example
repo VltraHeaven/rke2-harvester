@@ -12,7 +12,8 @@ new_image = {
 namespace               = ""
 harvester_net           = ""
 harvester_net_namespace = ""
-cluster_name            = ""
+vm_prefix               = ""
+vm_count                = 1
 ssh_user                = ""
 cloud_config_user_data  = <<-EOF
     #cloud-config

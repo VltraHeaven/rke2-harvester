@@ -5,9 +5,9 @@ resource "harvester_cloudinit_secret" "cloud-config" {
   network_data = ""
 }
 
-resource "harvester_virtualmachine" "cp_node" {
-  count       = 3
-  name        = "${var.machine_name_prefix}-${count.index}"
+resource "harvester_virtualmachine" "vm" {
+  count       = var.vm_count
+  name        = "${var.vm_prefix}-${count.index}"
   namespace   = var.namespace
   description = "${var.machine_name_prefix} RKE2 cluster"
 
