@@ -1,5 +1,5 @@
 resource "harvester_cloudinit_secret" "cloud-config" {
-  name         = "cloud-config-${var.machine_name_prefix}"
+  name         = "cloud-config-${var.vm_prefix}"
   namespace    = var.namespace
   user_data    = var.cloud_config_user_data
   network_data = ""
