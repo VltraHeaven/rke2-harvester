@@ -116,3 +116,9 @@ variable "cloud_config_user_data" {
   description = "cloud-init user-data"
   default     = ""
 }
+
+variable "cloud_config_network_data" {
+  type        = string
+  description = "cloud-init network-data"
+  default     = ""
+}
