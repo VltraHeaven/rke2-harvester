@@ -41,7 +41,7 @@ variable "new_image" {
 
   default = {
     name         = "ubuntu24"
-    display_name = "noble-server-cloudimg-amd64.imgg"
+    display_name = "noble-server-cloudimg-amd64.img"
     source_type  = "download"
     url          = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
   }
