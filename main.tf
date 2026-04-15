@@ -13,6 +13,7 @@ resource "harvester_virtualmachine" "vm" {
 
   tags = {
     ssh-user = var.ssh_user
+    app      = var.vm_prefix
   }
 
   cloudinit {
