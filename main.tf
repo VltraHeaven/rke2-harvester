@@ -15,6 +15,7 @@ resource "harvester_virtualmachine" "vm" {
 
   tags = {
     ssh-user = var.ssh_user
+    terraform-harvester/project = var.vm-prefix
   }
 
   cloudinit {
@@ -67,4 +68,31 @@ resource "harvester_virtualmachine" "vm" {
     exit 1
   EOT
   }
+}
+
+
+resource "harvester_loadbalancer" "vm_lb" {
+  count = var.create_lb ? 1 : 0
+  name          = "${vm_prefix}-lb"
+  namespace     = var.namespace
+  workload_type = "vm"
+  ipam          = var.lb_ipam
+  listener {
+    backend_port = var.lb_listener_backend_port
+    port         = var.lb_listener_port
+    protocol     = var.lb_protocol
+    name         = "${var.prefix}-${var.lb_protocol}"
+  }
+  backend_selector {
+    key    = "terraform-harvester/project"
+    values = [var.vm_prefix]
+  }
+  healthcheck {
+    port = var.lb_listener_backend_port
+    period_seconds = var.lb_healthcheck_period_seconds
+    timeout_seconds = var.lb_healthcheck_timeout_seconds
+    failure_threshold = var.lb_healthcheck_failure_threshold
+    success_threshold = var.lb_healthcheck_success_threshold
+  }
+  depends_on = [ module.harvester_vm ]
 }
