@@ -4,6 +4,6 @@ output "vm_ip_addresses" {
 }
 
 output "vm_lb_ip_address" {
-  value      = var.create_lb ? data.harvester_loadbalancer.vm_lb[0].ip_address : null
+  value      = var.create_lb ? [for lb in data.harvester_loadbalancer.vm_lb : "${lb.name}: ${lb.ip_address}"] : null
   depends_on = [data.harvester_loadbalancer.vm_lb]
 }

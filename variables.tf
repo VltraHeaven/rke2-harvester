@@ -16,7 +16,7 @@ variable "download_image" {
   description = "Create a new harvester image resource"
 }
 
-variable "image_name" {
+variable "image_display_name" {
   type        = string
   description = "Name of existing vm image"
   default     = ""
@@ -131,7 +131,7 @@ variable "cloud_config_network_data" {
 
 variable "create_lb" {
   type        = bool
-  description = "Sepcify true or false to create a VM LoadBalancer"
+  description = "Specify true or false to create a VM LoadBalancer"
   default     = false
 }
 

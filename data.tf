@@ -1,5 +1,5 @@
 data "harvester_image" "image" {
-  display_name = var.download_image ? resource.harvester_image.new_image[0].display_name : var.image_name
+  display_name = var.download_image ? resource.harvester_image.new_image[0].display_name : var.image_display_name
   namespace    = var.image_namespace
 }
 
@@ -21,7 +21,7 @@ data "harvester_virtualmachine" "vm" {
 
 data "harvester_loadbalancer" "vm_lb" {
   count      = length(harvester_loadbalancer.vm_lb)
-  name       = resource.harvester_loadbalancer.vm_lb[0].name
+  name       = resource.harvester_loadbalancer.vm_lb[count.index].name
   namespace  = var.namespace
   depends_on = [harvester_loadbalancer.vm_lb]
 }

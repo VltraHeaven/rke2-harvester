@@ -1,6 +1,6 @@
 kconfig                 = ""
 download_image          = true
-image_name              = ""
+image_display_name      = ""
 image_namespace         = ""
 image_storageclass      = "harvester-longhorn"
 new_image = {
