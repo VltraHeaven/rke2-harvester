@@ -4,6 +4,6 @@ output "vm_ip_addresses" {
 }
 
 output "vm_lb_ip_address" {
-  value      = data.harvester_loadbalancer.vm_lb.ip_address
+  value      = data.harvester_loadbalancer.vm_lb[0].ip_address
   depends_on = [harvester_loadbalancer.vm_lb]
 }
