@@ -81,7 +81,7 @@ resource "harvester_loadbalancer" "vm_lb" {
     backend_port = var.lb_listener_backend_port
     port         = var.lb_listener_port
     protocol     = var.lb_protocol
-    name         = "${var.prefix}-${var.lb_protocol}"
+    name         = "${var.vm_prefix}-${var.lb_protocol}"
   }
   backend_selector {
     key    = "terraform-harvester/project"
