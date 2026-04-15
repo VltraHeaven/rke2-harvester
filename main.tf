@@ -15,7 +15,7 @@ resource "harvester_virtualmachine" "vm" {
 
   tags = {
     ssh-user = var.ssh_user
-    terraform-harvester/project = var.vm-prefix
+    terraform-harvester/project = var.vm_prefix
   }
 
   cloudinit {
