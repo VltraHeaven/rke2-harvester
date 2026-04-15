@@ -94,5 +94,5 @@ resource "harvester_loadbalancer" "vm_lb" {
     failure_threshold = var.lb_healthcheck_failure_threshold
     success_threshold = var.lb_healthcheck_success_threshold
   }
-  depends_on = [ module.harvester_vm ]
+  depends_on = [ resource.harvester_virtualmachine.vm ]
 }
