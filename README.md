@@ -218,9 +218,7 @@ Setting `create_lb = true` creates a `harvester_loadbalancer` resource named `<v
 | Output | Type | Description |
 |--------|------|-------------|
 | `vm_ip_addresses` | `list(string)` | List of strings in the format `"<vm-name>: <ip1>, <ip2>"` for each provisioned VM. Populated after the `local-exec` IP-wait probe completes. |
-| `vm_lb_ip_address` | `string` | The IP address assigned to the Harvester LoadBalancer. Only populated when `create_lb = true`; accessing this output when `create_lb = false` will cause an index-out-of-bounds error. |
-
-> **Note:** `vm_lb_ip_address` references `data.harvester_loadbalancer.vm_lb[0].ip_address`. Guard access to this output with `create_lb = true`, or wrap it in a `try()` expression in calling modules.
+| `vm_lb_ip_address` | `string` | The IP address assigned to the Harvester LoadBalancer. Only populated when `create_lb = true |
 
 ---
 
