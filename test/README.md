@@ -66,8 +66,7 @@ go test -v -timeout 90m ./...
 |------|-------------|
 | `TestPlanNoLB` | Plan must succeed with `create_lb=false` |
 | `TestPlanWithLB` | Plan must succeed with `create_lb=true` |
-| `TestPlanDownloadImageEnabled` | Plan must succeed with `download_image=true` and a valid `new_image` object |
-| `TestPlanDownloadImageDisabled` | `harvester_image` resource must be absent from plan when `download_image=false` |
+
 
 ### `apply_test.go` — Full apply/destroy tests
 
@@ -76,7 +75,6 @@ go test -v -timeout 90m ./...
 | `TestApplyDestroyBasicVM` | Single VM apply; validates `vm_ip_addresses` output format |
 | `TestApplyDestroyMultiVM` | Multi-VM apply; validates one output entry per VM |
 | `TestApplyDestroyWithLB` | Apply with LB; validates `vm_lb_ip_address` is non-empty |
-| `TestApplyNoLB_LBOutputIsNull` | Apply without LB; validates `vm_lb_ip_address` is null |
 | `TestDiskRetainedAfterDestroy` | Destroy with `vm_disk_auto_delete=false` completes without error |
 
 ### `image_test.go` — Image download tests
@@ -84,6 +82,8 @@ go test -v -timeout 90m ./...
 | Test | Description |
 |------|-------------|
 | `TestApplyDownloadImage` | Full apply downloading a fresh image and booting a VM from it |
+| `TestPlanDownloadImageEnabled` | Plan must succeed with `download_image=true` and a valid `new_image` object |
+| `TestPlanDownloadImageDisabled` | `harvester_image` resource must be absent from plan when `download_image=false` |
 
 ## Notes
 
