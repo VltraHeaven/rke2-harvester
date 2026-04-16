@@ -55,7 +55,7 @@ resource "harvester_virtualmachine" "vm" {
     interpreter = ["/bin/bash", "-c"]
     command     = <<-EOT
     for i in $(seq 1 30); do
-      IP=$(kubectl get vmi --kubeconfig=${var.kconfig} ${var.vm_prefix}-${count.index} -n ${var.namespace} \
+      IP=$(kubectl get vmi --kubeconfig ${var.kconfig} ${var.vm_prefix}-${count.index} -n ${var.namespace} \
         -o jsonpath='{.status.interfaces[0].ipAddress}' 2>/dev/null)
       if [[ -n "$IP" && "$IP" != "<none>" ]]; then
         echo "VM IP: $IP"
@@ -81,7 +81,7 @@ resource "harvester_loadbalancer" "vm_lb" {
     backend_port = var.lb_listener_backend_port
     port         = var.lb_listener_port
     protocol     = var.lb_protocol
-    name         = "${var.vm_prefix}-${var.lb_protocol}"
+    name         = "${var.vm_prefix}-${lower(var.lb_protocol)}"
   }
   backend_selector {
     key    = "tag.harvesterhci.io/terraform-project"

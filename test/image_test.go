@@ -42,7 +42,7 @@ func TestPlanDownloadImageDisabled(t *testing.T) {
 
 	opts := terraformOptions(t, vars)
 
-	planStruct := terraform.InitAndPlanAndShowWithStruct(t, opts)
+	planStruct := terraform.InitAndPlanAndShowWithStructNoLogTempPlanFile(t, opts)
 
 	for addr := range planStruct.ResourcePlannedValuesMap {
 		assert.NotContains(t, addr, "harvester_image.new_image",

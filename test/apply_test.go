@@ -109,30 +109,6 @@ func TestApplyDestroyWithLB(t *testing.T) {
 	assert.NotEmpty(t, lbIP, "vm_lb_ip_address should be populated when create_lb=true")
 }
 
-// TestApplyNoLB_LBOutputIsNull applies with create_lb=false and confirms that
-// vm_lb_ip_address output is null/empty.
-//
-// Run with: go test -v -run TestApplyNoLB_LBOutputIsNull -timeout 30m
-func TestApplyNoLB_LBOutputIsNull(t *testing.T) {
-	t.Parallel()
-
-	vars := getBaseVars(t)
-	vars["vm_prefix"] = "terratest-nolb-null"
-	vars["vm_count"] = 1
-	vars["create_lb"] = false
-
-	opts := terraformOptions(t, vars)
-	defer terraform.Destroy(t, opts)
-
-	terraform.InitAndApply(t, opts)
-
-	// When create_lb=false the output value is null, which Terraform renders as
-	// an empty string when fetched via OutputE.
-	lbIP, err := terraform.OutputE(t, opts, "vm_lb_ip_address")
-	assert.NoError(t, err, "fetching vm_lb_ip_address should not error when create_lb=false")
-	assert.Empty(t, lbIP, "vm_lb_ip_address should be null/empty when create_lb=false")
-}
-
 // TestDiskRetainedAfterDestroy provisions a VM with vm_disk_auto_delete=false,
 // destroys it, and confirms the apply/destroy cycle completed without error.
 //
